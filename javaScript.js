@@ -21,6 +21,7 @@ let quantPigTailSMQEl = document.querySelector('#quantPigTailSM');
 let quantCordaoOpticoMMQEl = document.querySelector('#quantCordaoOpticoMM');
 let quantCordaoOpticoSMQEl = document.querySelector('#quantCordaoOpticoSM');
 let tipoFOQEl = document.querySelector('#tipoFO');
+let tipoFOBandejaQEl = document.querySelector('#tipoFOBandeja');
 let tipoAcopladorInternoQEl = document.querySelector('#tipoAcopladorInterno');
 let tipoCordaoOpticoInternoQEl = document.querySelector('#tipoCordaoOpticoInterno');
 let tipoPigTailInternoQEl = document.querySelector('#tipoPigTailInterno');
@@ -69,7 +70,7 @@ function Quantificar() {
 
     //Quantificação Enlance.
 
-    for (i = 1; i < nPavimentosE; i++) {
+    for (i = 1; i < nPavimentosE+1; i++) {
         medidaPavimentoBackbone = medidaBackboneE*2 + (medidaBackboneE * i);
         medidaTotalBackbone = medidaTotalBackbone + medidaPavimentoBackbone * quantBackbonesAndarE; 
     }
@@ -79,7 +80,7 @@ function Quantificar() {
 
     //Acoplador Óptico
 
-    totalBackbones = (nPavimentosE-1)  * quantBackbonesAndarE;
+    totalBackbones = (nPavimentosE)  * quantBackbonesAndarE;
     totalFOAndar = totalBackbones * (nParesFOAndarE * 2);
 
     quantAcopladorMMQEl.innerHTML =  nParesFOAndarE * totalBackbones;
@@ -94,12 +95,12 @@ function Quantificar() {
 
     if(backbonePrimSecE == 'Nao') {
 
-        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE - 1)  * quantBackbonesAndarE * nParesFOAndarE;
-        totalCordaoOptico = (((nPavimentosE - 1)  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
+        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE;
+        totalCordaoOptico = (((nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
 
     } else {
-        quantCordaoOpticoMMQEl.innerHTML =  nPavimentosE  * quantBackbonesAndarE * nParesFOAndarE;
-        totalCordaoOptico = ((nPavimentosE  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
+        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE;
+        totalCordaoOptico = (((nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
     }
 
     quantCordaoOpticoSMQEl.innerHTML =  nParesFOCampusE;
@@ -142,7 +143,9 @@ function Quantificar() {
         abrespecificacaoFOE = 'SM';
     }
 
-    tipoFOQEl.innerHTML = `Cabo de Fibra Óptica${especificacaoFOE} ${característicaFOE}- com ${nParesFOAndarE * 2} fibras`;
+    tipoFOQEl.innerHTML = `Cabo de Fibra Óptica ${especificacaoFOE} ${característicaFOE}- com ${nParesFOAndarE * 2} fibras`;
+    tipoFOBandejaQEl.innerHTML = `Bandeja para emenda de fibra ${especificacaoFOE} no DIO - (comporta até 12 emendas)`;
+
     tipoAcopladorInternoQEl.innerHTML =  `Acoplador óptico Interno  ${característicaFOE} - ${abrespecificacaoFOE} - LC - duplo`;
     tipoCordaoOpticoInternoQEl.innerHTML = `Cordão Óptico Interno  ${característicaFOE} - ${abrespecificacaoFOE} - 3m - duplo - conector LC`;
     tipoPigTailInternoQEl.innerHTML = `Pig tail Interno ${característicaFOE} - ${abrespecificacaoFOE} - 1,5m - simples - conector LC`

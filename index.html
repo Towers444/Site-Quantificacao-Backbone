@@ -14,7 +14,7 @@
         <h3>Informe os dados necessários para o cálculo:</h3>
         <section id="coeficientes-da-equacao">
             <label for="nPavimentos" class="definicoes">Número de pavimentos da edificação: </label>
-            <input id="nPavimentos" type="number" value="4">
+            <input id="nPavimentos" type="number" value="3">
             <br>
             <label for="quantBackbonesAndar" class="definicoes">Quantidade de backbones por andar: </label>
             <input id="quantBackbonesAndar" type="number" value="1">
@@ -25,18 +25,28 @@
             <label for="nParesFO" class="definicoes">Número de pares de fibras para o backbone do campus: </label>
             <input id="nParesFOCampus" type="number" value="4">
             <br>
-            <label for="medidaBackbone" class="definicoes">Medida básica para cálculo dos lances de cabo do backbone: </label>
+            <label for="medidaBackbone" class="definicoes">Pé direito para cálculo dos lances de cabo do backbone: </label>
             <input id="medidaBackbone" type="number" value="5">
             <br>
             <label for="especificacaoFO" class="definicoes">Especificação do cabo de fibra óptica: </label>
-            <input id="especificacaoFO" type="text" value="Tight Buffer (FOMMIG)">
+            <input id="especificacaoFO" type="text" placeholder="Informe a especificação" list="faixa1">
+            <datalist id="faixa1">
+              <option value="Tight Buffer (FOMMIG)"></option>
+              <option value="Loose"></option>
+              <option value="Loose auto-sustentável"></option>
+            </datalist>
             <br>
             <label for="característicaFO" class="definicoes">Característica da fibra óptica: </label>
-            <input id="característicaFO" type="text" value="50 x 125µm">
+            <input id="característicaFO" type="text" placeholder="Informe as características" list="faixa2">
+            <datalist id="faixa2">
+              <option value="50 x 125µm"></option>
+              <option value="62,5 x 125µm"></option>
+              <option value="9 x 125µm"></option>
+            </datalist>
             <br>
             <label for="backbonePrimSec" class="definicoes">Verificação da existência de backbone primário e/ou secundário </label>
-            <input id="backbonePrimSec" type="text" placeholder="Informe a existência" list="faixa">
-            <datalist id="faixa">
+            <input id="backbonePrimSec" type="text" placeholder="Informe a existência" list="faixa3">
+            <datalist id="faixa3">
               <option value="Sim"></option>
               <option value="Nao"></option>
             </datalist>
@@ -75,7 +85,7 @@
                 <td id="quantAcopladorSM" class="valorAlterado">x</td>
             </tr>
             <tr>
-                <td>Bandeja para emenda de fibra Tigh Tight-Boofer no DIO - (comporta até 12 emendas)</td>
+                <td id="tipoFOBandeja">Bandeja para emenda de fibra Tigh Tight-Boofer no DIO - (comporta até 12 emendas)</td>
                 <td>unid</td>
                 <td id="quantEmenda" class="valorAlterado">x</td>
             </tr>
