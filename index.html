@@ -13,45 +13,62 @@
         <h1>Site de Quantificação de Backbone</h1>
         <h3>Informe os dados necessários para o cálculo:</h3>
         <section id="coeficientes-da-equacao">
-            <label for="nPavimentos" class="definicoes">Número de pavimentos da edificação: </label>
-            <input id="nPavimentos" type="number" value="3">
-            <br>
-            <label for="quantBackbonesAndar" class="definicoes">Quantidade de backbones por andar: </label>
-            <input id="quantBackbonesAndar" type="number" value="1">
-            <br>
-            <label for="nParesFO" class="definicoes">Número de pares de fibras disponível por andar: </label>
-            <input id="nParesFOAndar" type="number" value="4">
-            <br>
-            <label for="nParesFO" class="definicoes">Número de pares de fibras para o backbone do campus: </label>
-            <input id="nParesFOCampus" type="number" value="4">
-            <br>
-            <label for="medidaBackbone" class="definicoes">Pé direito para cálculo dos lances de cabo do backbone: </label>
-            <input id="medidaBackbone" type="number" value="5">
-            <br>
-            <label for="especificacaoFO" class="definicoes">Especificação do cabo de fibra óptica: </label>
-            <input id="especificacaoFO" type="text" placeholder="Informe a especificação" list="faixa1">
-            <datalist id="faixa1">
-              <option value="Tight Buffer (FOMMIG)"></option>
-              <option value="Loose"></option>
-              <option value="Loose auto-sustentável"></option>
-            </datalist>
-            <br>
-            <label for="característicaFO" class="definicoes">Característica da fibra óptica: </label>
-            <input id="característicaFO" type="text" placeholder="Informe as características" list="faixa2">
-            <datalist id="faixa2">
-              <option value="50 x 125µm"></option>
-              <option value="62,5 x 125µm"></option>
-              <option value="9 x 125µm"></option>
-            </datalist>
-            <br>
-            <label for="backbonePrimSec" class="definicoes">Verificação da existência de backbone primário e/ou secundário </label>
-            <input id="backbonePrimSec" type="text" placeholder="Informe a existência" list="faixa3">
-            <datalist id="faixa3">
-              <option value="Sim"></option>
-              <option value="Nao"></option>
-            </datalist>
-            <br>
-            <br>
+            <div class="box">
+                <input type="radio" id="backbonePrimario" class="definicoes" name="tpBackbone" value="Backbone primário"/>
+                <label for="backbonePrimario">Backbone primário</label>
+                <input type="radio" id="backboneSecundario" class="definicoes" name="tpBackbone" value="Backbone secundário" />
+                <label for="backboneSecundario">Backbone secundário</label>
+            </div>
+            <div class="box secundario">
+                <label id="labelNPavimentos" for="nPavimentos" class="definicoes">Número de pavimentos da edificação: </label>
+                <input id="nPavimentos" type="number" value="3">
+            </div>
+            <div class="box secundario">
+                <label id="labelQuantBackbonesAndar" for="quantBackbonesAndar" class="definicoes">Quantidade de backbones por andar: </label>
+                <input id="quantBackbonesAndar" type="number" value="1">
+            </div>
+            <div class="box secundario">
+                <label id="labelNParesFOAndar" for="nParesFOAndar" class="definicoes">Número de pares de fibras disponível por andar: </label>
+                <input id="nParesFOAndar" type="number" value="4">
+            </div>
+            <div class="box primario">
+                <label id="labelNParesFOCampus" for="nParesFOCampus" class="definicoes">Número de pares de fibras para o backbone do campus: </label>
+                <input id="nParesFOCampus" type="number" value="4">
+            </div>
+            <div class="box secundario">
+                <label id="labelMedidaBackbone" for="medidaBackbone" class="definicoes">Pé direito para cálculo dos lances de cabo do backbone: </label>
+                <input id="medidaBackbone" type="number" value="5">
+            </div>
+            <div class="box primario">
+                <label id="labelDistanciaLinkExterno" for="distanciaLinkExterno" class="definicoes">Distância do link externo: </label>
+                <input id="distanciaLinkExterno" type="number" value="280">
+            </div>
+            <div class="box">
+                <label for="especificacaoFO" class="definicoes">Especificação do cabo de fibra óptica: </label>
+                <input id="especificacaoFO" type="text" placeholder="Informe a especificação" list="faixa1">
+                <datalist id="faixa1">
+                <option value="Tight Buffer (FOMMIG)"></option>
+                <option value="Loose"></option>
+                <option value="Loose auto-sustentável"></option>
+                </datalist>
+            </div>
+            <div class="box">
+                <label for="característicaFO" class="definicoes">Característica da fibra óptica: </label>
+                <input id="característicaFO" type="text" placeholder="Informe as características" list="faixa2">
+                <datalist id="faixa2">
+                <option value="50 x 125µm"></option>
+                <option value="62,5 x 125µm"></option>
+                <option value="9 x 125µm"></option>
+                </datalist>
+            </div>
+            <div class="box secundario">
+                <label id="labelBackbonePrimSec" for="backbonePrimSec" class="definicoes">Verificação da existência de backbone no primeiro andar: </label>
+                <input id="backbonePrimSec" type="text" placeholder="Informe a existência" list="faixa3">
+                <datalist id="faixa3">
+                <option value="Sim"></option>
+                <option value="Nao"></option>
+                </datalist>
+            </div>
             <center>
                 <button class="button" id="botao-quantificar">Quantificar</button> 
                 <button class="button" id="botao-limpar">Limpar</button>
@@ -64,71 +81,88 @@
                 <th>Item</th>
                 <th>Quantidade</th>
             </tr>
-            <tr>
+            <tr class="secundarioTabela">
                 <td id="tipoFO">Cabo de Fibra Óptica Tight Buffer (FOMMIG) 50 x 125µm - com 8 fibras</td>
                 <td class="valorAlterado">m</td>
                 <td id="quantMetrosFO" class="valorAlterado">x</td>
+            </tr>
+            <tr class="primarioTabela">
+                <td>Distância entre prédios:</td>
+                <td class="valorAlterado">m</td>
+                <td id="quantMetrosPredio" class="valorAlterado">x</td>
             </tr> 
-            <tr>
+            <tr class="secundarioTabela">
                 <td>Chassi DIO (Distribuido Interno Óptico) com 24 portas - 1U - 19</td>
                 <td>unid</td>
-                <td id="quantDio" class="valorAlterado">x</td>
+                <td id="quantDioSecundario" class="valorAlterado">x</td>
             </tr>
-            <tr>
+            <tr class="primarioTabela">
+                <td>Chassi DIO (Distribuido Interno Óptico) com 24 portas - 1U - 19</td>
+                <td>unid</td>
+                <td id="quantDioPrimario" class="valorAlterado">x</td>
+            </tr>
+            <tr class="secundarioTabela">
                 <td id="tipoAcopladorInterno">Acoplador óptico Interno 50 x 125µm - MM - LC - duplo</td>
                 <td>unid</td>
                 <td id="quantAcopladorMM" class="valorAlterado">x</td>
             </tr>
-            <tr>
-                <td>Acoplador óptico Externo 9 x 125µm - SM - LC - duplo  </td>
+            <tr class="primarioTabela">
+                <td id="tipoAcopladorExterno">Acoplador óptico Externo 9 x 125µm - SM - LC - duplo  </td>
                 <td>unid</td>
                 <td id="quantAcopladorSM" class="valorAlterado">x</td>
             </tr>
-            <tr>
+            <tr class="secundarioTabela">
                 <td id="tipoFOBandeja">Bandeja para emenda de fibra Tigh Tight-Boofer no DIO - (comporta até 12 emendas)</td>
                 <td>unid</td>
-                <td id="quantEmenda" class="valorAlterado">x</td>
+                <td id="quantEmendaSecundario" class="valorAlterado">x</td>
             </tr>
-            <tr>
+            <tr class="primarioTabela">
+                <td id="tipoFOBandejaPrimario">Bandeja para emenda de fibra Loose no DIO - (comporta até 12 emendas)</td>
+                <td>unid</td>
+                <td id="quantEmendaPrimario" class="valorAlterado">x</td>
+            </tr>
+            <tr class="secundarioTabela">
                 <td id="tipoPigTailInterno">Pig tail Interno 50 x 125µm - MM - 1,5m - simples - conector LC</td>
                 <td>unid</td>
                 <td id="quantPigTailMM" class="valorAlterado">x</td>
             </tr>
-            <tr>
-                <td>Pig tail Externo 50 x 125µm - SM - 1,5m - simples - conector LC</td>
+            <tr class="primarioTabela">
+                <td id="tipoPigTailExterno">Pig tail Externo 9 x 125µm - SM - 1,5m - simples - conector LC</td>
                 <td>unid</td>
                 <td id="quantPigTailSM" class="valorAlterado">x</td>
             </tr>
-            <tr>
+            <tr class="secundarioTabela">
                 <td id="tipoCordaoOpticoInterno">Cordão Óptico Interno 50 x 125µm - MM - 3m - duplo - conector LC</td>
                 <td>unid</td>
                 <td id="quantCordaoOpticoMM" class="valorAlterado">x</td>
             </tr>
-            <tr>
-                <td>Cordão Óptico Externo 9 x 125µm - SM - 3m - duplo - conector LC</td>
+            <tr class="primarioTabela">
+                <td id="tipoCordaoOpticoExterno">Cordão Óptico Externo 9 x 125µm - SM - 3m - duplo - conector LC</td>
                 <td>unid</td>
                 <td id="quantCordaoOpticoSM" class="valorAlterado">x</td>
             </tr>
         </table>
         <br>
-        <h2>Tabela de Especificações SET's</h2>
-        <table>
-            <tr>
-                <th>Descrição</th>
-                <th>Item</th>
-                <th>Quantidade</th>
-            </tr>
-            <tr>
-                <td>Terminador Óptico para 8 fibras</td>
-                <td>unid</td>
-                <td id="quantTerminador" class="valorAlterado">x</td>
-            </tr>
-            <tr>
-                <td id="tipoPigTailInternoSet">Pig tail 50 x 125µm - MM - 3,0m - duplo - conector LC</td>
-                <td>unid</td>
-                <td id="quantPigTailMMSet" class="valorAlterado">x</td>
-            </tr>
-        </table>
+        <section id="tabelaSets" class="secundario">
+            <h2>Tabela de Especificações SET's</h2>
+            <table >
+                <tr>
+                    <th>Descrição</th>
+                    <th>Item</th>
+                    <th>Quantidade</th>
+                </tr>
+                <tr>
+                    <td>Terminador Óptico para 8 fibras</td>
+                    <td>unid</td>
+                    <td id="quantTerminador" class="valorAlterado">x</td>
+                </tr>
+                <tr>
+                    <td id="tipoPigTailInternoSet">Pig tail 50 x 125µm - MM - 3,0m - duplo - conector LC</td>
+                    <td>unid</td>
+                    <td id="quantPigTailMMSet" class="valorAlterado">x</td>
+                </tr>
+            </table>
+        </section>
         <h2>Miscelânia</h2>
         <table>
             <tr>
@@ -136,12 +170,17 @@
                 <th>Item</th>
                 <th>Quantidade</th>
             </tr>
-            <tr>
+            <tr class="secundarioTabela">
                 <td>Etiqueta para Portas do DIO</td>
                 <td>unid</td>
-                <td id="quantEtiquetasDio" class="valorAlterado">x</td>
+                <td id="quantEtiquetasDioSecundario" class="valorAlterado">x</td>
             </tr>
-            <tr>
+            <tr class="primarioTabela">
+                <td>Etiqueta para Portas do DIO</td>
+                <td>unid</td>
+                <td id="quantEtiquetasDioPrimario" class="valorAlterado">x</td>
+            </tr>
+            <tr class="secundarioTabela">
                 <td>Etiqueta para os cordões ópticos e pigtail´s (TO)</td>
                 <td>unid</td>
                 <td id="quantEtiquetasCordaoPigTail" class="valorAlterado">x</td>

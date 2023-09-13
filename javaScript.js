@@ -4,18 +4,36 @@ let nPavimentosEEl = document.querySelector('#nPavimentos');
 let nParesFOAndarEEl = document.querySelector('#nParesFOAndar');
 let nParesFOCampusEEl = document.querySelector('#nParesFOCampus');
 let medidaBackboneEEl = document.querySelector('#medidaBackbone');
+let distanciaLinkExternoEEl = document.querySelector('#distanciaLinkExterno');
 let especificacaoFOEEl = document.querySelector('#especificacaoFO');
 let característicaFOEEl = document.querySelector('#característicaFO');
 let quantBackbonesAndarEEl = document.querySelector('#quantBackbonesAndar');
 let backbonePrimSecEEl = document.querySelector('#backbonePrimSec');
 
+// Labels valores de entreada.
+
+let labelNPavimentosEEl = document.querySelector('#labelNPavimentos');
+let labelNParesFOAndarEEl = document.querySelector('#labelNParesFOAndar');
+let labelMedidaBackboneEEl = document.querySelector('#labelMedidaBackbone');
+let labelQuantBackbonesAndarEEl = document.querySelector('#labelQuantBackbonesAndar');
+let labelBackbonePrimSecEEl = document.querySelector('#labelBackbonePrimSec');
+
 // QuerySelect valores de modificação tabela SEQ.
 
+let camposTabelaSecundarioEl = document.querySelectorAll('.secundarioTabela');
+let camposTabelaPrimarioEl = document.querySelectorAll('.primarioTabela');
+
+let camposSecundarioEl = document.querySelectorAll('.secundario');
+let camposPrimarioEl = document.querySelectorAll('.primario');
+
 let quantMetrosFOQEl = document.querySelector('#quantMetrosFO');
-let quantDioQEl = document.querySelector('#quantDio');
+let quantMetrosPredioQEl = document.querySelector('#quantMetrosPredio');
+let quantDioSecundarioQEl = document.querySelector('#quantDioSecundario');
+let quantDioPrimarioQEl = document.querySelector('#quantDioPrimario');
 let quantAcopladorMMQEl = document.querySelector('#quantAcopladorMM');
 let quantAcopladorSMQEl = document.querySelector('#quantAcopladorSM');
-let quantEmendaTBQEl = document.querySelector('#quantEmenda');
+let quantEmendaSecundarioTBQEl = document.querySelector('#quantEmendaSecundario');
+let quantEmendaPrimarioTBQEl = document.querySelector('#quantEmendaPrimario');
 let quantPigTailMMQEl = document.querySelector('#quantPigTailMM');
 let quantPigTailSMQEl = document.querySelector('#quantPigTailSM');
 let quantCordaoOpticoMMQEl = document.querySelector('#quantCordaoOpticoMM');
@@ -26,25 +44,144 @@ let tipoAcopladorInternoQEl = document.querySelector('#tipoAcopladorInterno');
 let tipoCordaoOpticoInternoQEl = document.querySelector('#tipoCordaoOpticoInterno');
 let tipoPigTailInternoQEl = document.querySelector('#tipoPigTailInterno');
 
+let tipoFOBandejaPrimarioQEl = document.querySelector('#tipoFOBandejaPrimario');
+let tipoAcopladorExternoQEl = document.querySelector('#tipoAcopladorExterno');
+let tipoCordaoOpticoExternoQEl = document.querySelector('#tipoCordaoOpticoExterno');
+let tipoPigTailExternoQEl = document.querySelector('#tipoPigTailExterno');
+
 
 // QuerySelect valores de modificação tabela SET.
 
+let tabelaSetsEl = document.querySelector('#tabelaSets');
 let quantTerminadorSEl = document.querySelector('#quantTerminador');
 let quantPigTailMMSEl = document.querySelector('#quantPigTailMMSet');
 let tipoPigTailInternoSEl = document.querySelector('#tipoPigTailInternoSet');
 
 // QuerySelect valores de modificação tabela Miscelânea.
 
-let quantEtiquetasDioMEl = document.querySelector('#quantEtiquetasDio');
+let quantEtiquetasDioSecundarioMEl = document.querySelector('#quantEtiquetasDioSecundario');
+let quantEtiquetasDioPrimarioMEl = document.querySelector('#quantEtiquetasDioPrimario');
 let quantEtiquetasCordaoPigTailMEl = document.querySelector('#quantEtiquetasCordaoPigTail');
 
+// Radio Tipo Backbone
+
+let backbonePrimarioEl = document.querySelector('#backbonePrimario');
+let backboneSecundarioEl = document.querySelector('#backboneSecundario');
+
+backbonePrimarioEl.addEventListener('change', CamposBackbonePrimario);
+backboneSecundarioEl.addEventListener('change', CamposBackboneSecundario);
+
 // Botão Quantificar.
+
 let botamQuantificarEl = document.querySelector('#botao-quantificar');
-botamQuantificarEl.addEventListener('click', Quantificar);
 
 // Botão Limpar. 
 let botamLimparEl = document.querySelector('#botao-limpar');
 botamLimparEl.addEventListener('click', limparCampos);
+
+function CamposBackbonePrimario() {
+
+    //Reconfigurações Tabelas
+
+    for(let i=0; i < camposTabelaSecundarioEl.length; i++) {
+        camposTabelaSecundarioEl[i].style.display = 'none';
+    }
+
+    for(let i=0; i < camposTabelaPrimarioEl.length; i++) {
+        camposTabelaPrimarioEl[i].style.display = 'table-row';
+    }
+
+    for(let i=0; i < camposSecundarioEl.length; i++) {
+        camposSecundarioEl[i].style.display = 'none';
+    }
+
+    for(let i=0; i < camposPrimarioEl.length; i++) {
+        camposPrimarioEl[i].style.display = 'block';
+    }
+
+    botamQuantificarEl.addEventListener('click', QuantificarBackbonePrimario);
+
+}
+
+function CamposBackboneSecundario() {
+
+    //Reconfigurações Tabelas
+
+    for(let i=0; i < camposTabelaSecundarioEl.length; i++) {
+        camposTabelaSecundarioEl[i].style.display = 'table-row';
+    }
+
+    for(let i=0; i < camposTabelaPrimarioEl.length; i++) {
+        camposTabelaPrimarioEl[i].style.display = 'none';
+    }
+
+    for(let i=0; i < camposSecundarioEl.length; i++) {
+        camposSecundarioEl[i].style.display = 'block';
+    }
+
+    for(let i=0; i < camposPrimarioEl.length; i++) {
+        camposPrimarioEl[i].style.display = 'none';
+    }
+
+    botamQuantificarEl.addEventListener('click', Quantificar);
+}
+
+function QuantificarBackbonePrimario() {
+
+    let nParesFOCampusE = parseInt(nParesFOCampusEEl.value);
+    let distanciaLinkExternoE = parseInt(distanciaLinkExternoEEl.value);
+    let especificacaoFOE = especificacaoFOEEl.value;
+    let característicaFOE = característicaFOEEl.value;
+
+    let totalDistribuidorOptico = 0;
+    let abrespecificacaoFOE;
+
+    //Distância Prédio
+
+    quantMetrosPredioQEl.innerHTML =  distanciaLinkExternoE;
+    
+    //Acoplador Óptico
+
+    quantAcopladorSMQEl.innerHTML =  nParesFOCampusE;
+
+    //PigTails
+
+    quantPigTailSMQEl.innerHTML =  nParesFOCampusE * 2;
+
+    //Bandeja Emenda 
+
+    quantEmendaPrimarioTBQEl.innerHTML = Math.ceil(nParesFOCampusE * 2 / 12);;
+
+    //Cordão Optico
+
+    quantCordaoOpticoSMQEl.innerHTML =  nParesFOCampusE;
+
+    //Distribuidor Óptico
+
+    totalDistribuidorOptico = Math.ceil((nParesFOCampusE * 2) / 24)
+
+    quantDioPrimarioQEl.innerHTML = totalDistribuidorOptico;
+
+    //Etiquetas Portas DIO
+
+    quantEtiquetasDioPrimarioMEl.innerHTML = totalDistribuidorOptico * 24;
+
+    //Caracterísiticas FO
+
+    if (especificacaoFOE.indexOf("MM") !== -1 || especificacaoFOE.indexOf("mm") !== -1) {
+
+        abrespecificacaoFOE = 'MM';
+    } else {
+        abrespecificacaoFOE = 'SM';
+    }
+
+    tipoFOBandejaPrimarioQEl.innerHTML = `Bandeja para emenda de fibra ${especificacaoFOE} no DIO - (comporta até 12 emendas)`;
+
+    tipoAcopladorExternoQEl.innerHTML =  `Acoplador óptico Externo  ${característicaFOE} - ${abrespecificacaoFOE} - LC - duplo`;
+    tipoCordaoOpticoExternoQEl.innerHTML = `Cordão Óptico Externo  ${característicaFOE} - ${abrespecificacaoFOE} - 3m - duplo - conector LC`;
+    tipoPigTailExternoQEl.innerHTML = `Pig tail Externo ${característicaFOE} - ${abrespecificacaoFOE} - 1,5m - simples - conector LC`
+
+}
 
 function Quantificar() {
 
@@ -84,40 +221,36 @@ function Quantificar() {
     totalFOAndar = totalBackbones * (nParesFOAndarE * 2);
 
     quantAcopladorMMQEl.innerHTML =  nParesFOAndarE * totalBackbones;
-    quantAcopladorSMQEl.innerHTML =  nParesFOCampusE;
 
     //PigTails
 
     quantPigTailMMQEl.innerHTML =  totalFOAndar;
-    quantPigTailSMQEl.innerHTML =  nParesFOCampusE * 2;
 
     //Cordão óptico
 
-    if(backbonePrimSecE == 'Nao') {
+    if(backbonePrimSecE == 'Sim') {
 
-        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE;
-        totalCordaoOptico = (((nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
+        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE;
+        totalCordaoOptico = (((nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE))
 
     } else {
-        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE;
-        totalCordaoOptico = (((nPavimentosE + 1)  * quantBackbonesAndarE * nParesFOAndarE) + nParesFOCampusE)
-    }
 
-    quantCordaoOpticoSMQEl.innerHTML =  nParesFOCampusE;
+        quantCordaoOpticoMMQEl.innerHTML =  (nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE;
+        totalCordaoOptico = (((nPavimentosE)  * quantBackbonesAndarE * nParesFOAndarE))
+
+    }
 
 
     //Bandeja Emenda
 
-    totalEmendasAndar = Math.ceil(totalFOAndar / 12); 
-
-    quantEmendaTBQEl.innerHTML = totalEmendasAndar;
+    quantEmendaSecundarioTBQEl.innerHTML = Math.ceil(totalFOAndar / 12);;
 
     //Distribuidor Óptico
 
-    totalAcopladorOptico = (nParesFOAndarE * totalBackbones) + nParesFOCampusE;
+    totalAcopladorOptico = (nParesFOAndarE * totalBackbones);
     totalDistribuidorOptico = Math.ceil((totalAcopladorOptico + totalCordaoOptico) / 24)
 
-    quantDioQEl.innerHTML = totalDistribuidorOptico;
+    quantDioSecundarioQEl.innerHTML = totalDistribuidorOptico;
 
     //Terminador Óptico
 
@@ -128,7 +261,7 @@ function Quantificar() {
 
     //Etiquetas Portas DIO
 
-    quantEtiquetasDioMEl.innerHTML = totalDistribuidorOptico * 24;
+    quantEtiquetasDioSecundarioMEl.innerHTML = totalDistribuidorOptico * 24;
 
     //Etiquetas Cordões Ópticos e Pig Tail's (TO)
 
@@ -136,7 +269,7 @@ function Quantificar() {
 
     //Caracterísiticas FO
 
-    if (especificacaoFOE.indexOf("MM") !== -1 || especificacaoFOE.indexOf("mm") !== -1 ) {
+    if (especificacaoFOE.indexOf("MM") !== -1 || especificacaoFOE.indexOf("mm") !== -1) {
 
         abrespecificacaoFOE = 'MM';
     } else {

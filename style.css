@@ -88,3 +88,11 @@ th, td {
 p {
   text-align: center;
 }
+
+.box {
+  display: block;
+}
+
+.secundarioTabela, .secundario {
+  display: none;
+}
